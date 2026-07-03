@@ -16,3 +16,4 @@ for i in range(t+t):
     t = t - g
     print(f"t = {t}")
     print("-" * 20)
+    

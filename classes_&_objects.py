@@ -23,3 +23,4 @@ button2 = tk.Button(root, text = "entry change", command=entry_change)
 button2.pack()
 
 root.mainloop()
+ddf
