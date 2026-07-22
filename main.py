@@ -10,7 +10,14 @@ class game:
         self.screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
         self.clock = pygame.time.Clock()
         self.running = True
-        self.all_sprites = pygame.sprite.Group()
+
+    def createTilemap(self):
+        for i, row in enumerate(Castle):
+            for j, column in enumerate(row):
+                if column == 'B':
+                    Block(self, j, i)
+                if column == 'P':
+                    player(self, j, i)
 
     def new(self):
         self.playing = True
@@ -19,8 +26,7 @@ class game:
         self.blocks = pygame.sprite.LayeredUpdates()
         self.enemies = pygame.sprite.LayeredUpdates()
         self.attacks = pygame.sprite.LayeredUpdates()
-
-        self.player = player(self, 1, 2,)
+        self.createTilemap()
 
     def events(self):
         for event in pygame.event.get():
