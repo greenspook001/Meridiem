@@ -26,7 +26,7 @@ class player(pygame.sprite.Sprite):
         self.rect.x = self.x
         self.rect.y = self.y
 
-    def update(self):
+    def refresh(self):
         self.movement()
         self.rect.x += self.x_change
         self.rect.y += self.y_change

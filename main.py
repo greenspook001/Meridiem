@@ -11,7 +11,7 @@ class game:
         self.clock = pygame.time.Clock()
         self.running = True
 
-    def createTilemap(self):
+    def tileMap(self):
         for i, row in enumerate(Castle):
             for j, column in enumerate(row):
                 if column == 'B':
@@ -19,16 +19,16 @@ class game:
                 if column == 'P':
                     player(self, j, i)
 
-    def new(self):
+    def updating(self):
         self.playing = True
 
         self.all_sprites = pygame.sprite.LayeredUpdates()
         self.blocks = pygame.sprite.LayeredUpdates()
         self.enemies = pygame.sprite.LayeredUpdates()
         self.attacks = pygame.sprite.LayeredUpdates()
-        self.createTilemap()
+        self.tileMap()
 
-    def events(self):
+    def runningGame(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.playing = False
@@ -47,7 +47,7 @@ class game:
 
     def main(self):
         while self.playing:
-            self.events()
+            self.runningGame()
             self.update()
             self.draw()
         self.running = False
@@ -60,7 +60,7 @@ class game:
 
 g = game()
 g.intro_screen()
-g.new()
+g.updating()
 while g.running:
     g.main()
     g.game_over()
