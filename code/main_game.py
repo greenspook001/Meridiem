@@ -28,7 +28,7 @@ Tile_kinds = [
     Tilekind("topwall", "images.keep/Wall_up.jpeg", True),#8
     Tilekind("bottomwall", "images.keep/Wall_down..jpeg", True),#9
     Tilekind("wall", "images.keep/Black_Wall.jpg", True),#10
-    Tilekind("transparent", "images.keep/Colisions.png", True),#11
+    Tilekind("transparent", "images.keep/Colisions.png", False),#11
     ]
 map = Map("maps/start.map", Tile_kinds, 32)
 
