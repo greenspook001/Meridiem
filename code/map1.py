@@ -1,4 +1,5 @@
 import pygame
+from camera import camera
 
 class Tilekind:
     def __init__(self, name, image, is_solid):
@@ -7,7 +8,7 @@ class Tilekind:
         self.is_solid = is_solid
 
 class Map:
-    def __init(self, map_file, tile_kinds, tile_size):
+    def __init__(self, map_file, tile_kinds, tile_size):
         self.tile_kinds = tile_kinds
 
         #loading the start.map file
@@ -19,7 +20,7 @@ class Map:
         self.tiles = []
         for line in data.split("\n"):
             row = []
-            for tile_number in line:
+            for tile_number in line.split():
                 row.append(int(tile_number))
             self.tiles.append(row)
 
@@ -29,6 +30,7 @@ class Map:
     def draw(self, screen):
         for y, row in enumerate(self.tiles):
             for x, tile in enumerate(row):
-                location = (x * self.tile_size, y * self.tile_size)
+                location = (x * self.tile_size - camera.x, 
+                            y * self.tile_size - camera.y)
                 image = self.tile_kinds[tile].image
                 screen.blit(image, location)
