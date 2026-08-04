@@ -1,5 +1,8 @@
 import pygame
 from camera import camera
+from math import ceil
+
+map = None
 
 class Tilekind:
     def __init__(self, name, image, is_solid):
@@ -9,7 +12,10 @@ class Tilekind:
 
 class Map:
     def __init__(self, map_file, tile_kinds, tile_size):
+        global map
         self.tile_kinds = tile_kinds
+
+        map = self
 
         #loading the start.map file
         file = open(map_file, "r")
@@ -25,6 +31,32 @@ class Map:
             self.tiles.append(row)
 
         self.tile_size = tile_size
+
+    def solid_point(self, x, y):
+        x_tile = int(x /self.tile_size)
+        y_tile = int(y /self.tile_size)
+        if x_tile < 0 or y_tile < 0 or y_tile >= len(self.tiles) or \
+        x_tile >= len(self.tiles[y_tile]):
+            return False
+        tile = self.tiles[y_tile][x_tile]
+        return self.tile_kinds[tile].is_solid
+
+    def solid_rectangle(self, x, y, width, height):
+        x_checks = int(ceil(width/self.tile_size))
+        y_checks = int(ceil(height/self.tile_size))
+        for yi in range(y_checks):
+            for xi in range(x_checks):
+                x = xi* self.tile_size + x
+                y = yi* self.tile_size + y
+                if self.solid_point(x, y):
+                    return True
+        if self.solid_point(x*width, y):
+            return True
+        if self.solid_point(x, y * height):
+            return True
+        if self.solid_point(x * width, y * height):
+            return True 
+        return False
 
     # Setting up the tile size
     def draw(self, screen):

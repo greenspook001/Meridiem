@@ -3,10 +3,16 @@ bodies = []
 
 class Body:
     def __init__(self, x=9, y=0, width=32, height=32):
-        self.hitbox = Rect(x, y, width, height=32)
+        self.hitbox = Rect(x, y, width, height)
         bodies.append(self)
     
     def posision(self):
+        from map1 import map
+        x = self.enemy.x + self.hitbox.x
+        y = self.enemy.y + self.hitbox.y
+        if map.solid_rectangle(x, y, self.hitbox.width, self.hitbox.height):
+            return False
+        return True
         for body in bodies:
             if body != self and body.collision(self):
                 return False
