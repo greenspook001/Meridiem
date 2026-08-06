@@ -7,7 +7,7 @@ class Body:
         bodies.append(self)
     
     def posision(self):
-        from map1 import map
+        from core.map1 import map
         x = self.enemy.x + self.hitbox.x
         y = self.enemy.y + self.hitbox.y
         if map.solid_rectangle(x, y, self.hitbox.width, self.hitbox.height):

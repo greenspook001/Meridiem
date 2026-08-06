@@ -1,6 +1,5 @@
 import pygame
-from camera import camera
-from math import ceil
+from core.camera import camera
 
 map = None
 
@@ -42,20 +41,15 @@ class Map:
         return self.tile_kinds[tile].is_solid
 
     def solid_rectangle(self, x, y, width, height):
-        x_checks = int(ceil(width/self.tile_size))
-        y_checks = int(ceil(height/self.tile_size))
-        for yi in range(y_checks):
-            for xi in range(x_checks):
-                x = xi* self.tile_size + x
-                y = yi* self.tile_size + y
-                if self.solid_point(x, y):
-                    return True
-        if self.solid_point(x*width, y):
-            return True
-        if self.solid_point(x, y * height):
-            return True
-        if self.solid_point(x * width, y * height):
-            return True 
+        for point_x, point_y in [
+            (x, y),
+            (x + width, y),
+            (x, y + height),
+            (x + width, y + height)
+        ]:
+            if self.solid_point(point_x, point_y):
+                return True
+
         return False
 
     # Setting up the tile size
