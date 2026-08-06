@@ -2,11 +2,13 @@ import pygame
 from core.camera import camera
 
 map = None
+map_location = "contents/maps"
+image_location = "contents/images.keep"
 
 class Tilekind:
     def __init__(self, name, image, is_solid):
         self.name = name
-        self.image = pygame.image.load(image)
+        self.image = pygame.image.load(image_location + "/" + image)
         self.is_solid = is_solid
 
 class Map:
@@ -17,7 +19,7 @@ class Map:
         map = self
 
         #loading the start.map file
-        file = open(map_file, "r")
+        file = open(map_location + "/" + map_file, "r")
         data = file.read()
         file.close()
 

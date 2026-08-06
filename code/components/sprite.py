@@ -3,13 +3,14 @@ from core.camera import camera
 
 sprites = []
 loaded = {}
+image_location = "contents/images.keep"
 
 class Sprite:
     def __init__(self, image):
         if image in loaded:
             self.image = loaded[image]
         else:
-            self.image = pygame.image.load(image)
+            self.image = pygame.image.load(image_location + "/" + image)
             loaded[image] = self.image
         sprites.append(self)
 

@@ -7,8 +7,6 @@ from core.camera import create_screen
 from components.enemy import Enemy, active_objects
 from components.physics import Body
 
-
-
 pygame.init()
 screen = create_screen(800, 600, "Spirit Bond")
 
@@ -17,22 +15,22 @@ pygame.display.set_caption("Spirit Bond")
 screen = pygame.display.set_mode((800,600))
 clear_colour = (0,0,0)
 running = True
-player = Enemy(Player(), Body(1, 23, 38, 20), Sprite("images.keep/Caltheros_Right.png"), x=32*11, y=32*7)
+player = Enemy(Player(), Body(1, 23, 38, 20), Sprite("Caltheros_right.png"), x=32*11, y=32*7)
 Tile_kinds = [
-    Tilekind("grass", "images.keep/Grass..jpeg", False), #0
-    Tilekind("floor", "images.keep/Floor..jpeg", False), #1
-    Tilekind("carpet", "images.keep/Carpet..jpeg", False), #2
-    Tilekind("path", "images.keep/Path..jpeg", False),#3
-    Tilekind("water","images.keep/Water..jpeg", True),#4
-    Tilekind("bridge", "images.keep/Wood..jpeg", False),#5
-    Tilekind("rightwall", "images.keep/Wall_right..jpeg", True), #6
-    Tilekind("leftwall", "images.keep/Wall_left.jpeg", True),#7
-    Tilekind("topwall", "images.keep/Wall_up.jpeg", True),#8
-    Tilekind("bottomwall", "images.keep/Wall_down..jpeg", True),#9
-    Tilekind("wall", "images.keep/Black_Wall.png", True),#10
-    Tilekind("transparent", "images.keep/Colisions.png", False),#11
+    Tilekind("grass", "Grass..jpeg", False), #0
+    Tilekind("floor", "Floor..jpeg", False), #1
+    Tilekind("carpet", "Carpet..jpeg", False), #2
+    Tilekind("path", "Path..jpeg", False),#3
+    Tilekind("water","Water..jpeg", True),#4
+    Tilekind("bridge", "Wood..jpeg", False),#5
+    Tilekind("rightwall", "Wall_right..jpeg", True), #6
+    Tilekind("leftwall", "Wall_left.jpeg", True),#7
+    Tilekind("topwall", "Wall_up.jpeg", True),#8
+    Tilekind("bottomwall", "Wall_down..jpeg", True),#9
+    Tilekind("wall", "Black_Wall.png", True),#10
+    Tilekind("transparent", "Colisions.png", False),#11
     ]
-map = Map("maps/start.map", Tile_kinds, 32)
+map = Map("start.map", Tile_kinds, 32)
 
 
 #Game Admin
