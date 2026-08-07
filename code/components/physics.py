@@ -8,8 +8,8 @@ class Body:
     
     def posision(self):
         from core.map1 import map
-        x = self.enemy.x + self.hitbox.x
-        y = self.enemy.y + self.hitbox.y
+        x = self.entity.x + self.hitbox.x
+        y = self.entity.y + self.hitbox.y
         if map.solid_rectangle(x, y, self.hitbox.width, self.hitbox.height):
             return False
         return True
@@ -20,10 +20,10 @@ class Body:
 
 
     def collision(self, other):
-        x = self.enemy.x + self.hitbox.x
-        y = self.enemy.y + self.hitbox.y
-        other_x = other.enemy.x + other.hitbox.x
-        other_y = other.enemy.y + other.hitbox.y
+        x = self.entity.x + self.hitbox.x
+        y = self.entity.y + self.hitbox.y
+        other_x = other.entity.x + other.hitbox.x
+        other_y = other.entity.y + other.hitbox.y
 
         if x < other_x + other.hitbox.width and \
         x + self.hitbox.width > other_x and \

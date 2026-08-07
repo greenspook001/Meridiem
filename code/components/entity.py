@@ -1,6 +1,6 @@
 active_objects = []
 
-class Enemy:
+class Entity:
     def __init__(self, *compoents, x=0, y=0):
         self.components = []
         for e in compoents:
@@ -9,11 +9,11 @@ class Enemy:
         self.y = y
     def add(self,component):
         self.components.append(component)
-        component.enemy = self
+        component.entity = self
     def remove(self, kind):
         e = self.get(kind)
         if e is not None:
-            e.enemy = None
+            e.entity = None
             self.components.remove(e)
     def has(self, kind):
         for e in self.components:

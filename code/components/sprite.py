@@ -18,4 +18,4 @@ class Sprite:
         sprites.remove(self)
 
     def draw(self, screen):
-        screen.blit(self.image, (self.enemy.x - camera.x, self.enemy.y - camera.y))
+        screen.blit(self.image, (self.entity.x - camera.x, self.entity.y - camera.y))

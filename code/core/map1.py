@@ -1,9 +1,9 @@
 import pygame
-from core.camera import camera
 
 map = None
 map_location = "contents/maps"
 image_location = "contents/images.keep"
+tile_size = 32
 
 class Tilekind:
     def __init__(self, name, image, is_solid):
@@ -12,16 +12,11 @@ class Tilekind:
         self.is_solid = is_solid
 
 class Map:
-    def __init__(self, map_file, tile_kinds, tile_size):
+    def __init__(self, data, tile_kinds):
         global map
         self.tile_kinds = tile_kinds
 
         map = self
-
-        #loading the start.map file
-        file = open(map_location + "/" + map_file, "r")
-        data = file.read()
-        file.close()
 
         #Setting up the tiles form the loaded data
         self.tiles = []
@@ -56,6 +51,7 @@ class Map:
 
     # Setting up the tile size
     def draw(self, screen):
+        from core.camera import camera
         for y, row in enumerate(self.tiles):
             for x, tile in enumerate(row):
                 location = (x * self.tile_size - camera.x, 
